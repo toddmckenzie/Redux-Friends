@@ -19,30 +19,27 @@ class FriendsList extends React.Component {
     this.add_friend(friend);
   }
   render() {
-    //if (this.props.fetch_friends) {
-      return (<h1>HI</h1>)
-//  } else {
-
-  //  return (
-    //  <div>
-      //  {this.props.friends.map(friend => {
-      //   return <Friend key={Date.now()} friend={friend} />
-    //  })}
-      //<div>
-      //  <FriendForm addFriend={this.addFriend}/>
-     //</div>
-   //)
-//   }
+    return (
+      <div>
+        {this.props.friends.map(friend => {
+         return <Friend friend={friend} />
+       })}
+       <FriendForm addFriend={this.addFriend}/>
 
 
-//  }
+    </div>
+   )
   }
+
+
+
+
 }
 
 const mapStateToProps = state => {
   return {
-  //  friends: state.friendsReducer.friends,
-  //  fetching: state.friendsReducer.fetching
+   friends: state.friends,
+    fetching: state.fetching
   }
 }
 

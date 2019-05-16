@@ -29,7 +29,7 @@ function friendsReducer(state = initialState, action) {
       }
     case SUCCESS:
       return { ...state,
-        friends: [...action.payload],
+        friends: action.payload,
         fetching: false,
         error: ''
       }
