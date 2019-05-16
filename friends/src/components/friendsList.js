@@ -2,7 +2,7 @@ import React from 'react';
 import Friend from './friend'
 import { connect } from 'react-redux';
 import FriendForm from './friendForm';
-import { fetch_friends, add_friend, delete_friend } from '../actions'
+import { fetchFriends, add_friend, delete_friend } from '../actions'
 
 
 
@@ -11,31 +11,38 @@ class FriendsList extends React.Component {
     super();
   }
   componentDidMount() {
-    console.log(fetch_friends)
-    this.props.fetch_friends();
+    console.log(fetchFriends)
+    this.props.fetchFriends();
   }
 
   addFriend = (friend) => {
-    this.addFriend(friend);
+    this.add_friend(friend);
   }
   render() {
+    //if (this.props.fetch_friends) {
+      return (<h1>HI</h1>)
+//  } else {
 
-    return (
+  //  return (
     //  <div>
-        //{this.props.friends.map(friend => {
-      //    return <Friend key={Date.now()} friend={friend} />
-      //  })}
-    //    <FriendForm addFriend={this.addFriend}/>
-    //  </div>
-    <p>hi</p>
-    )
+      //  {this.props.friends.map(friend => {
+      //   return <Friend key={Date.now()} friend={friend} />
+    //  })}
+      //<div>
+      //  <FriendForm addFriend={this.addFriend}/>
+     //</div>
+   //)
+//   }
+
+
+//  }
   }
 }
 
 const mapStateToProps = state => {
   return {
   //  friends: state.friendsReducer.friends,
-    //fetching: state.friendsReducer.fetching
+  //  fetching: state.friendsReducer.fetching
   }
 }
 
@@ -43,7 +50,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps,
   {
-    fetch_friends,
+    fetchFriends,
     add_friend,
     delete_friend
   }
