@@ -13,15 +13,15 @@ export const LOGGED_IN = 'LOGGED_IN';
 export const LOGIN_START= 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const ADD_FRIEND_SUCCESS = 'ADD_FRIEND_SUCCESS';
+
 
 export const fetchFriends = () => dispatch => {
   dispatch({ type: FETCHING_FRIENDS })
   axiosWithAuth()
     .get('http://localhost:5000/api/friends')
     .then(res => {
-      console.log('hi')
       console.log(res.data)
-      console.log('yo')
       dispatch({ type: SUCCESS, payload: res.data })
     })
     .catch(err => {
@@ -31,13 +31,20 @@ export const fetchFriends = () => dispatch => {
 }
 
 
-export const add_friend = (friend) => {
-  axios.post('http://localhost:5000/api/friends', {...friend })
-    .then(res => {
-      console.log(res)
+export const addfriend = (friend) => dispatch => {
+  dispatch({ type: ADD_FRIEND })
+  axios.post('http://localhost:5000/api/friends', friend, {
+    headers: { Authorization: localStorage.getItem('token')}
+  })
+    .then(res =>  {
+      dispatch({ type: ADD_FRIEND_SUCCESS, payload: res.data })
     })
     .catch(err => {
-      console.log(err)
+      if (err.res.status === 403){
+        console.log(err.res.status)
+      } else {
+        console.log(err.res)
+      }
     })
 }
 

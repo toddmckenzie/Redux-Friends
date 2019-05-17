@@ -2,29 +2,35 @@ import React from 'react';
 import Friend from './friend'
 import { connect } from 'react-redux';
 import FriendForm from './friendForm';
-import { fetchFriends, add_friend, delete_friend } from '../actions'
-
+import { fetchFriends,  delete_friend } from '../actions';
+import './friend.css'
 
 
 class FriendsList extends React.Component {
   constructor(){
     super();
+    this.state = {
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      }
+    }
   }
   componentDidMount() {
     console.log(fetchFriends)
     this.props.fetchFriends();
   }
 
-  addFriend = (friend) => {
-    this.add_friend(friend);
-  }
   render() {
     return (
       <div>
+        <div className='flexing'>
         {this.props.friends.map(friend => {
-         return <Friend friend={friend} />
+         return <Friend friend={friend} key={Math.random()} />
        })}
-       <FriendForm addFriend={this.addFriend}/>
+       </div>
+       <FriendForm key={Date.now()} />
 
 
     </div>
@@ -48,7 +54,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps,
   {
     fetchFriends,
-    add_friend,
     delete_friend
   }
 )(FriendsList);
