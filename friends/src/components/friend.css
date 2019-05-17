@@ -1,0 +1,24 @@
+.card {
+  border: 1px dotted black;
+  width: 200px;
+  height: 200px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+}
+
+
+.flexing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form {
+  margin-top: 20px;
+  height: 150px;
+  width: 150px;
+
+}
